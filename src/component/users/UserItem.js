@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export class userItem extends Component {
-  render() {
-    const {login, avatar_url, html_url} = this.props.user;
+const UserItem = (props) => {
+    const {login, avatar_url, html_url} = props.user;
 
     return (
       <div className='card text-center'>
@@ -15,7 +14,6 @@ export class userItem extends Component {
         </div>
       </div>
     )
-  }
 }
 
-export default userItem
+export default UserItem
