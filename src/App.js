@@ -1,6 +1,6 @@
 import React,{Fragment,Component}from 'react'
 import Navbar from './component/Navbar';
-import UserItem from './component/users/UserItem';
+import Users from './component/users/Users'
 import './App.css';
 
 class App extends Component {
@@ -9,7 +9,11 @@ class App extends Component {
     return (
       <div className='App'>
        <Navbar/>
-       <UserItem/>
+       
+       <div className='container'> 
+        <Users/>
+       </div>
+     
       </div>
     );
   }
