@@ -1,4 +1,6 @@
 Section 3 video 12 1:21
 Section 3 video 13 4:37
 section 3 video 15
-Secrtion 3 video 16
+section 3 video 16
+You can find global variables here https://github.com/settings/applications/2073822
+section 4 video 19
