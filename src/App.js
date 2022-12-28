@@ -1,7 +1,8 @@
 import React,{Fragment,Component}from 'react'
 import Navbar from './component/Navbar';
 import Users from './component/users/Users';
-import Search from './component/users/Search'
+import Search from './component/users/Search';
+import Alert from './component/Alert';
 import './App.css';
 import axios from 'axios'
 
@@ -9,19 +10,20 @@ import axios from 'axios'
 class App extends Component {
   state ={
     users:[],
-    loading:false
+    loading:false,
+    alert:null
 
   }
 
-  async componentDidMount(){
-    this.setState({loading:true});
+  // async componentDidMount(){
+  //   this.setState({loading:true});
 
-    const res = await axios.get(`https://api.github.com/users?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+  //   const res = await axios.get(`https://api.github.com/users?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
 
-    console.log(res.data);
+  //   console.log(res.data);
 
-    this.setState({users: res.data, loading:false});
-  }
+  //   this.setState({users: res.data, loading:false});
+  // }
 
   //Search Github users
   searchUsers = async(text)=>{
@@ -33,14 +35,29 @@ class App extends Component {
     this.setState({users: res.data.items, loading:false});
   }
 
+  //Clear users from state
+  clearUsers = () => this.setState({loading:false, users:[]})
+
+  //Set Alert
+
+  setAlert = (msg, alertType) =>{
+    this.setState({alert: {msg, alertType}});
+
+    setTimeout(()=>{
+
+      this.setState({alert:null})
+    }, 5000)
+  }
+
   render(){
+    const {users, loading,} =this.state;
     return (
       <div className='App'>
        <Navbar/>
-
        <div className='container'> 
-       <Search searchUsers={this.searchUsers}/>
-        <Users loading={this.state.loading} users={this.state.users}/>
+       <Alert alert={this.state.alert}/>
+       <Search setAlert={this.setAlert} searchUsers={this.searchUsers} clearUsers={this.clearUsers} showClear={users.length > 0 ? true: false}/>
+        <Users loading={loading} users={users}/>
        </div>
      
       </div>
