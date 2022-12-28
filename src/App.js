@@ -1,7 +1,10 @@
 import React,{Fragment,Component}from 'react'
 import Navbar from './component/Navbar';
 import Users from './component/users/Users';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Search from './component/users/Search';
+import Home from './component/Pages/Home';
+import About from './component/Pages/About'
 import Alert from './component/Alert';
 import './App.css';
 import axios from 'axios'
@@ -52,15 +55,32 @@ class App extends Component {
   render(){
     const {users, loading,} =this.state;
     return (
+      <Router>
       <div className='App'>
        <Navbar/>
        <div className='container'> 
        <Alert alert={this.state.alert}/>
-       <Search setAlert={this.setAlert} searchUsers={this.searchUsers} clearUsers={this.clearUsers} showClear={users.length > 0 ? true: false}/>
-        <Users loading={loading} users={users}/>
+
+       <Routes>
+
+        <Route path='/' element={
+          <Fragment>
+              <Search setAlert={this.setAlert} searchUsers={this.searchUsers} clearUsers={this.clearUsers} showClear={users.length > 0 ? true: false}/>
+              <Users loading={loading} users={users}/>
+          </Fragment>
+        }/>
+
+        <Route path='/about' element={<About/>} />
+
+       </Routes >
+
        </div>
+       
      
       </div>
+      </Router>
+
+      
     );
   }
  
