@@ -6,6 +6,7 @@ import Search from './component/users/Search';
 import Home from './component/Pages/Home';
 import About from './component/Pages/About'
 import Alert from './component/Alert';
+import User from './component/User';
 import './App.css';
 import axios from 'axios'
 
@@ -14,7 +15,8 @@ class App extends Component {
   state ={
     users:[],
     loading:false,
-    alert:null
+    alert:null,
+    user:{}
 
   }
 
@@ -38,6 +40,17 @@ class App extends Component {
     this.setState({users: res.data.items, loading:false});
   }
 
+  //Get Single Github User
+  getUser = async(username)=>{
+
+    this.setState({loading:true});
+
+    const res = await axios.get(`https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+    console.log(`App.js line 48: `,res);
+
+    this.setState({user: res.data, loading:false});
+  }
+
   //Clear users from state
   clearUsers = () => this.setState({loading:false, users:[]})
 
@@ -53,7 +66,7 @@ class App extends Component {
   }
 
   render(){
-    const {users, loading,} =this.state;
+    const {users, loading, user} =this.state;
     return (
       <Router>
       <div className='App'>
@@ -71,7 +84,9 @@ class App extends Component {
         }/>
 
         <Route path='/about' element={<About/>} />
-
+        <Route path='/user/:login'element={props=>(
+          <User {...props} getUser={this.getUser} user={user} loading={loading}/>
+        )}/>
        </Routes >
 
        </div>
