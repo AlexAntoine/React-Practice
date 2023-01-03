@@ -6,3 +6,38 @@ You can find global variables here https://github.com/settings/applications/2073
 section 4 video 19
 section 4 vidoe 21
 Section 4 video 22 - user component is not working as it should 7:28
+
+Take note of this. You are probably going to need this later
+
+Simple answer is you don't use a render prop function any more.
+
+So you would simply do..
+
+              <Route
+                path={`/user/:login`}
+                element={
+                  <User getUser={this.getUser} user={user} loading={loading} />
+                }
+              />
+You would only use render props here so that we can spread the <Route /> props to the component, so that you get access to some special props in User.js such as the match object for getting the route params.
+In place of accessing the match object we now have a useParams hook.
+
+However you can only use hooks in function components. So you will have to convert the User component to a function component.
+
+import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+ 
+function User({ getUser, loading, user: { name } }) {
+  const { login } = useParams()
+ 
+  useEffect(() => {
+    getUser(login)
+  }, [])
+ 
+  return <div>{name}</div>
+}
+ 
+export default User
+The app does get refactored to use function components later anyway.
+
+Section 4 video 22 8:24
