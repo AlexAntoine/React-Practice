@@ -1,12 +1,11 @@
 import React,{Fragment,Component}from 'react'
-import Navbar from './component/Navbar';
+import Navbar from './component/Layout/Navbar';
 import Users from './component/users/Users';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Search from './component/users/Search';
-import Home from './component/Pages/Home';
+import User from './component/users/User';
 import About from './component/Pages/About'
-import Alert from './component/Alert';
-import User from './component/User';
+import Alert from './component/Layout/Alert';
 import './App.css';
 import axios from 'axios'
 
@@ -41,7 +40,7 @@ class App extends Component {
   }
 
   //Get Single Github User
-  getUser = async(username)=>{
+  getUser = async username => {
 
     this.setState({loading:true});
 
@@ -50,6 +49,15 @@ class App extends Component {
 
     this.setState({user: res.data, loading:false});
   }
+  // getUser = async(username)=>{
+
+  //   this.setState({loading:true});
+
+  //   const res = await axios.get(`https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+  //   console.log(`App.js line 48: `,res);
+
+  //   this.setState({user: res.data, loading:false});
+  // }
 
   //Clear users from state
   clearUsers = () => this.setState({loading:false, users:[]})
@@ -82,12 +90,15 @@ class App extends Component {
               <Users loading={loading} users={users}/>
           </Fragment>
         }/>
-
         <Route path='/about' element={<About/>} />
-        <Route path='/user/:login'element={props=>(
-          <User {...props} getUser={this.getUser} user={user} loading={loading}/>
-        )}/>
-       </Routes >
+        <Route path="/user/:login" element={
+
+          <User getUser={this.getUser} user={user} loading={loading}></User>
+          }>
+
+        </Route>
+        
+       </Routes>
 
        </div>
        

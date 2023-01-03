@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import UserItem from './UserItem';
-import Spinner from '../spinner'
+import Spinner from '../Layout/spinner'
 
 const Users = ({users, loading})=> {
     
