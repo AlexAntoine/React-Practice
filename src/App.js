@@ -48,6 +48,7 @@ class App extends Component {
     console.log(`App.js line 48: `,res);
 
     this.setState({user: res.data, loading:false});
+    console.log('GetUser')
   }
   // getUser = async(username)=>{
 
@@ -90,14 +91,13 @@ class App extends Component {
               <Users loading={loading} users={users}/>
           </Fragment>
         }/>
-        <Route path='/about' element={<About/>} />
-        <Route path="/user/:login" element={
 
-          <User getUser={this.getUser} user={user} loading={loading}></User>
-          }>
-
-        </Route>
+        <Route path="/user/:login" render={props =>(
+          <User {...props} getUser={this.getUser} user={user} loading={loading}/>
+        )} />
         
+        <Route path='/about' element={<About/>} />
+
        </Routes>
 
        </div>
