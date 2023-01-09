@@ -45,3 +45,5 @@ Section 4 video 22 8:24
 Still working on find  the solution. I am probably going to have to 
 turn it into a functional component or maybe just continue on until he 
 switches to modern react with useEffects and hooks.
+
+onto section 5 - hopefully refactoring all this will get it to working
