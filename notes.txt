@@ -47,3 +47,5 @@ turn it into a functional component or maybe just continue on until he
 switches to modern react with useEffects and hooks.
 
 onto section 5 - hopefully refactoring all this will get it to working
+
+getting user component is still not showing. 
