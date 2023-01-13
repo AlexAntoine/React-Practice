@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types';
 import {Link } from 'react-router-dom';
 
 const UserItem = ({user: {login, avatar_url, html_url}}) => {
@@ -13,14 +12,10 @@ const UserItem = ({user: {login, avatar_url, html_url}}) => {
 
         <div>
           <Link to={`/user/${login}`} className='btn btn-dark btn-sm my-1'>More</Link>
-            {/* <a href={html_url} rel="noopener"  target="_blank" className='btn btn-dark btn-sm my-1'>More</a> */}
+          {/* <a href={html_url} rel="noopener"  target="_blank" className='btn btn-dark btn-sm my-1'>More</a> */}
         </div>
       </div>
     )
 }
-
-// UserItem.PropTypes = {
-//     user: PropTypes.object.isRequired
-// }
 
 export default UserItem

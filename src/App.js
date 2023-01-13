@@ -7,7 +7,8 @@ import User from './component/users/User';
 import About from './component/Pages/About'
 import Alert from './component/Layout/Alert';
 import './App.css';
-import axios from 'axios'
+import axios from 'axios';
+import GithubState from './context/github/GithubState';
 
 
 const App= ()=> {
@@ -30,7 +31,7 @@ const App= ()=> {
   }
 
   //Get Single Github User
-  const getUser = async username => {
+  const getUser = async (username) => {
 
     setLoading(true)
 
@@ -43,7 +44,7 @@ const App= ()=> {
   }
   
   //Get Users repos
-  const getUserRepos = async username => {
+  const getUserRepos = async (username) => {
 
     setLoading(true)
 
@@ -74,6 +75,7 @@ const App= ()=> {
 
  
   return (
+    <GithubState>
       <Router>
       <div className='App'>
        <Navbar/>
@@ -93,9 +95,15 @@ const App= ()=> {
 
         <Route path="/user/:login" element={props =>(
 
-          <User {...props} repos={repos} getUserRepos={getUserRepos} getUser={getUser} user={user} loading={loading}/>
+          <User {...props} repos={repos} getUserRepos={getUserRepos()} getUser={getUser()} user={user} loading={loading}/>
 
         )} />
+
+        {/* <Route path="/user/:login" element={(
+
+        <User repos={repos} getUserRepos={getUserRepos} getUser={getUser} user={user} loading={loading}/>
+
+        )}/> */}
 
         <Route path='/about' element={<About/>} />
 
@@ -106,10 +114,10 @@ const App= ()=> {
      
       </div>
       </Router>
-
+      </GithubState>
       
     );
   
-}
+};
 
 export default App;
