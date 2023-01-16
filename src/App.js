@@ -87,7 +87,7 @@ const App= ()=> {
         <Route path='/' element={
           <Fragment>
 
-              <Search setAlert={showAlert} searchUsers={searchUsers} clearUsers={clearUsers} showClear={users.length > 0 ? true: false}/>
+              <Search setAlert={showAlert} clearUsers={clearUsers} showClear={users.length > 0 ? true: false}/>
               <Users loading={loading} users={users}/>
 
           </Fragment>
