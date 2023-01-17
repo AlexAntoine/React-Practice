@@ -45,10 +45,12 @@ Section 4 video 22 8:24
 Still working on find  the solution. I am probably going to have to 
 turn it into a functional component or maybe just continue on until he 
 switches to modern react with useEffects and hooks.
-
+                                                                  
 onto section 5 - hopefully refactoring all this will get it to working
 
 getting user component is still not showing. 
 onto video 29 section 5 - still unable to display user component UI
 
 onto video 31 section 5
+
+still working on video 31 - I had to fix and error 3:28
