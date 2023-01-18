@@ -18,7 +18,7 @@ const App= ()=> {
   const [loading, setLoading] = useState(false)
   const [repos, setRepos] = useState([])
   const [alert, setAlert] = useState(null)
-  
+
   //Get Single Github User
   const getUser = async (username) => {
 
@@ -55,13 +55,6 @@ const App= ()=> {
     }, 5000);
 
    }
-  //Clear users from state
-  const clearUsers = ()=>{
-    setUsers([])
-    setLoading(false)
-  
-  }
-
  
   return (
     <GithubState>
@@ -76,7 +69,7 @@ const App= ()=> {
         <Route path='/' element={
           <Fragment>
 
-              <Search setAlert={showAlert} clearUsers={clearUsers} showClear={users.length > 0 ? true: false}/>
+              <Search setAlert={showAlert} showClear={users.length > 0 ? true: false}/>
               <Users/>
           </Fragment>
         }/>
