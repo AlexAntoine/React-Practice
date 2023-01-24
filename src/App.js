@@ -7,7 +7,6 @@ import User from './component/users/User';
 import About from './component/Pages/About'
 import Alert from './component/Layout/Alert';
 import './App.css';
-import axios from 'axios';
 import GithubState from './context/github/GithubState';
 
 
@@ -15,23 +14,9 @@ const App= ()=> {
 
   // const [users, setUsers] = useState([])
   // const [user, setUser] = useState({})
-  const [loading, setLoading] = useState(false)
-  const [repos, setRepos] = useState([])
+  // const [loading, setLoading] = useState(false)
+  // const [repos, setRepos] = useState([])
   const [alert, setAlert] = useState(null)
-
-  
-  //Get Users repos
-  const getUserRepos = async (username) => {
-
-    setLoading(true)
-
-    const res = await axios.get(`https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
-    console.log(`App.js line 48: `,res);
-
-    setRepos(res.data);
-    setLoading(false)
-    
-  }
 
    //Set Alert
    const showAlert = (msg, alertType)=>{
@@ -62,19 +47,8 @@ const App= ()=> {
           </Fragment>
         }/>
 
-        <Route path="/user/:login" element={props =>(
-
-          <User repos={repos} getUserRepos={getUserRepos}/>
-
-        )} />
-
-        {/* <Route path="/user/:login" element={(
-
-        <User repos={repos} getUserRepos={getUserRepos} getUser={getUser} user={user} loading={loading}/>
-
-        )}/> */}
-
         <Route path='/about' element={<About/>} />
+        <Route path='/user/:login' element={User}></Route>
 
        </Routes>
 

@@ -54,3 +54,5 @@ onto video 29 section 5 - still unable to display user component UI
 onto video 31 section 5
 
 still working on video 31 - I had to fix and error 3:28
+
+Finished video 32 on section 5. The repos array is not appearing in value of the context provider.
