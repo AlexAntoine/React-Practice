@@ -48,7 +48,7 @@ const App= ()=> {
         }/>
 
         <Route path='/about' element={<About/>} />
-        <Route path='/user/:login' element={User}></Route>
+        <Route path='/user/:login' element={<User/>}></Route>
 
        </Routes>
 
