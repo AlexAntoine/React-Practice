@@ -1,4 +1,4 @@
-import React,{Fragment,useState}from 'react'
+import React,{Fragment}from 'react'
 import Navbar from './component/Layout/Navbar';
 import Users from './component/users/Users';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -8,6 +8,7 @@ import About from './component/Pages/About'
 import Alert from './component/Layout/Alert';
 import './App.css';
 import GithubState from './context/github/GithubState';
+import AlertState from "./context/alert/AlertState"
 
 
 const App= ()=> {
@@ -16,39 +17,29 @@ const App= ()=> {
   // const [user, setUser] = useState({})
   // const [loading, setLoading] = useState(false)
   // const [repos, setRepos] = useState([])
-  const [alert, setAlert] = useState(null)
+  // const [alert, setAlert] = useState(null)
 
-   //Set Alert
-   const showAlert = (msg, alertType)=>{
-
-    setAlert({msg, alertType});
-    setTimeout(()=>{
-
-      setAlert(null)
-    }, 5000);
-
-   }
- 
   return (
     <GithubState>
+      <AlertState>
       <Router>
       <div className='App'>
        <Navbar/>
        <div className='container'> 
-       <Alert alert={alert}/>
+       <Alert/>
 
        <Routes>
 
         <Route path='/' element={
           <Fragment>
 
-              <Search setAlert={showAlert} />
+              <Search/>
               <Users/>
           </Fragment>
         }/>
 
         <Route path='/about' element={<About/>} />
-        <Route path='/user/:login' element={<User/>}></Route>
+        <Route path='/user/:login' element={<User/>}/>
 
        </Routes>
 
@@ -57,6 +48,7 @@ const App= ()=> {
      
       </div>
       </Router>
+      </AlertState>
       </GithubState>
       
     );
