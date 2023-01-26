@@ -62,3 +62,5 @@ working on error use this link https://stackoverflow.com/questions/70290770/reac
 Fixed rendering component issue
 
 onto video 34 of section 5
+
+site deployed to netlify onto section 6
