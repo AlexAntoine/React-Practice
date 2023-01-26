@@ -1,8 +1,13 @@
-import React from 'react'
+import React, {Fragment} from 'react'
+import Search from '../users/Search';
+import Users from '../users/Users'
 
 const Home = () => {
   return (
-    <div>Home</div>
+   <Fragment>
+      <Search/>
+      <Users/>
+   </Fragment>
   )
 }
 

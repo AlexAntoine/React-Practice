@@ -4,8 +4,10 @@ import Users from './component/users/Users';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Search from './component/users/Search';
 import User from './component/users/User';
-import About from './component/Pages/About'
+import About from './component/Pages/About';
+import Home from "./component/Pages/Home";
 import Alert from './component/Layout/Alert';
+import NotFound from './component/Pages/NotFound';
 import './App.css';
 import GithubState from './context/github/GithubState';
 import AlertState from "./context/alert/AlertState"
@@ -30,17 +32,10 @@ const App= ()=> {
 
        <Routes>
 
-        <Route path='/' element={
-          <Fragment>
-
-              <Search/>
-              <Users/>
-          </Fragment>
-        }/>
-
+        <Route path="/" element={<Home/>}/>
         <Route path='/about' element={<About/>} />
         <Route path='/user/:login' element={<User/>}/>
-
+        <Route element={<Home/>}/>
        </Routes>
 
        </div>
